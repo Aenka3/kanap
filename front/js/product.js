@@ -1,14 +1,11 @@
-// 
-
+// importation de fetch
 import {fetchAPI} from "./fetch.js";
 
-//
-
+// Déclaration des paramètres url et id
 let params = new URL(document.location).searchParams;
 let idProduit = params.get("id");
 
 // Fonction d'affichage du produit
-
 const afficherProduit = async function () {
     const produit = await fetchAPI(`http://localhost:3000/api/products/${idProduit}`);
     let choixCouleur = document.getElementById("colors");
@@ -22,21 +19,18 @@ const afficherProduit = async function () {
 };
 
 //Affichage du produit
-
 afficherProduit();
 
 //Selection du bouton ajouter au panier
-
 let cartButton = document.getElementById("addToCart");
 
-//Ajouter produit au panier lors du click
-
+//Ajouter le produit au panier
 cartButton.addEventListener("click", function (eventClick) {
     if (document.getElementById("colors").value == "") {
         alert("Veuillez sélectionnez une couleur");
         eventClick.preventDefault();
     } else {
-        // Select des elements à mettre dans le panier
+        // Selection des elements à mettre dans le panier
         let image = document.querySelector("body > main > div > section > article > div.item__img > img").src;
         let imageAlt = document.querySelector("body > main > div > section > article > div.item__img > img").alt;
         let name = document.getElementById("title").textContent;
@@ -50,7 +44,7 @@ cartButton.addEventListener("click", function (eventClick) {
         //pour tester la boucle et l'arreter
         let boucle = 0;
 
-        // ajout des elt du panier dans un tableau
+        // ajout des element du panier dans un objet
         let eltPanier = { image, imageAlt, name, price, choixOpt, qty, productID };
 
         //Déclaration au format js de la clé produit stocké dans le local storage
@@ -62,7 +56,7 @@ cartButton.addEventListener("click", function (eventClick) {
             panier.push(eltPanier);
             localStorage.setItem("produit", JSON.stringify(panier));
         }
-        //Avant de stock dans local storage, on verifie si nom et option sont =, si = alors on incremente qty
+        //Avant de stock dans local storage, on verifie si nom et option sont =, si = alors on incremente la quantité
         else {
             panier.forEach((article) => {
                 if (article.name === name && article.choixOpt === choixOpt) {
