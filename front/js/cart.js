@@ -16,10 +16,10 @@ function afficherPanier () {
                     <img src="${panier[i].image}" alt="${panier[i].imageAlt}" />
                 </div>
                 <div class="cart__item__content">
-                    <div class="cart__item__content__titlePrice">
+                    <div class="cart__item__content__description">
                         <h2>${panier[i].name}</h2>
+                        <p>${panier[i].choixOpt}</p>
                         <p>${panier[i].price}</p>
-                        <p>Couleur: ${panier[i].choixOpt}</p>
                     </div>
                     <div class="cart__item__content__settings">
                         <div class="cart__item__content__settings__quantity">

@@ -2,6 +2,7 @@
 import {fetchAPI} from "./fetch.js";
 
 // Déclaration des paramètres url et id
+// documentation mozilla
 let params = new URL(document.location).searchParams;
 let idProduit = params.get("id");
 
