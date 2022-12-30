@@ -9,6 +9,7 @@ function afficherPanier () {
     }
     // Si panier non vide
     else {
+        //Pour chaque articles dans le panier, on le rajoute sur la page
         for (i = 0; i < panier.length; i++) {
             document.getElementById("cart__items").innerHTML += `
             <article class="cart__item" data-id="${panier[i].productID}">
@@ -46,7 +47,7 @@ function supprimerArticle(e) {
     location.reload();
 }
 
-// Mise à jour des quantités et total prix si modification des valeures dans l'input
+// Mise à jour des quantités et total prix si modification des valeurs dans l'input
 function getNewQty(e) {
     let index = e.getAttribute("index");
     let newQty = e.value;
@@ -56,7 +57,7 @@ function getNewQty(e) {
         panier.splice(index, 1);
         localStorage.setItem("produit", JSON.stringify(panier));
         location.reload();
-    } else {
+    } else {//On met à jour l'affichage
         document.getElementById("totalQuantity").innerHTML = totalQty();
         document.getElementById("totalPrice").innerHTML = totalPrice();
         localStorage.setItem("produit", JSON.stringify(panier));
@@ -101,7 +102,7 @@ let city = form.city;
 let email = form.email;
 let boutonCommander = form.submit;
 
-//Declaration des RegExp
+//Declaration des expressions régulières
 let nameRegExp = /^[a-zA-Z -]+$/;
 let addressRegExp = /^[a-zA-Z0-9\s,.'-]{3,}$/;
 let emailRegExp = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/;

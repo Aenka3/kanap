@@ -8,12 +8,14 @@ let idProduit = params.get("id");
 
 // Fonction d'affichage du produit
 const afficherProduit = async function () {
-    const produit = await fetchAPI(`http://localhost:3000/api/products/${idProduit}`);
+    const produit = await fetchAPI(`http://localhost:3000/api/products/${idProduit}`); // On récupère le produit
     let choixCouleur = document.getElementById("colors");
+    // On introduit les attributs du produits dans les contenus HTML
     document.querySelector(".item__img").innerHTML = `<img src="${produit.imageUrl}" alt="${produit.altTxt}">`;
     document.getElementById("title").textContent = produit.name;
     document.getElementById("price").textContent = produit.price;
     document.getElementById("description").textContent = produit.description;
+    //On rajoute les déclinaisons du produit dans le input
     produit.colors.forEach((option) => {
         choixCouleur.innerHTML += `<option value="${option}">${option}</option>`;
     });
@@ -26,8 +28,8 @@ afficherProduit();
 let cartButton = document.getElementById("addToCart");
 
 //Ajouter le produit au panier
-cartButton.addEventListener("click", function (eventClick) {
-    if (document.getElementById("colors").value == "") {
+cartButton.addEventListener("click", function (eventClick) { // 
+    if (document.getElementById("colors").value == "") {//On vérifie que l'utilisateur a choisit une coleur
         alert("Veuillez sélectionnez une couleur");
         eventClick.preventDefault();
     } else {
@@ -52,6 +54,7 @@ cartButton.addEventListener("click", function (eventClick) {
         let panier = JSON.parse(localStorage.getItem("produit"));
 
         //Si le localstorage est vide, on créer tableau, on push le panier dedans et on stock dans localStorage
+        //Si le tableau panier n'a pas été créer, on construit un tableau et on ajoute l'article choisit par l'utilisateur
         if (!panier) {
             panier= [];
             panier.push(eltPanier);
@@ -73,7 +76,7 @@ cartButton.addEventListener("click", function (eventClick) {
 
             localStorage.setItem("produit", JSON.stringify(panier));
         }
-
+        //On rajoute le pluriel si sup à >1
         if (qty > 1) {
             alert(`Vous avez ajouté ${qty} articles au panier`);
         } else if (qty == 1) {
