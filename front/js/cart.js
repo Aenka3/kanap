@@ -5,7 +5,7 @@ let panier = JSON.parse(localStorage.getItem("produit"));
 function afficherPanier () {
     // Si panier vide
     if (!panier || panier.length == "") {
-        document.querySelector("#cartAndFormContainer > h1").textContent += " est vide";
+        document.querySelector("h1").textContent += " est vide";
     }
     // Si panier non vide
     else {
@@ -64,7 +64,7 @@ function getNewQty(e) {
     }
 }
 
-// Calcul du total prix
+// Calcul du prix total
 function totalPrice() {
     let totalprix = 0;
     for (let i = 0; i < panier.length; i++) {
@@ -75,10 +75,10 @@ function totalPrice() {
     return totalprix;
 }
 
-// affichage du total prix
+// affichage du prix total
 document.getElementById("totalPrice").innerHTML = totalPrice();
 
-// Calcul du total quantité(s)
+// Calcul de quantité(s) totale
 function totalQty() {
     let totalqty = 0;
     for (let i = 0; i < panier.length; i++) {
@@ -88,7 +88,7 @@ function totalQty() {
     return totalqty;
 }
 
-// affichage du total quantités
+// affichage de quantité(s) totale
 document.getElementById("totalQuantity").innerHTML = totalQty();
 
 // Selection de la div contenant tout le formulaire
@@ -147,7 +147,7 @@ address.addEventListener("change", function () {
 function verificationAddress() {
     let testAddress = addressRegExp.test(address.value);
     if (testAddress == false) {
-        address.nextElementSibling.innerHTML = `Veuillez saisir une adresse valide.<br>Exemple: <i>10 rue de Paris</i>`;
+        address.nextElementSibling.innerHTML = `Veuillez saisir une adresse valide.<br>Exemple: <i>1 rue des Trois Frères</i>`;
         return false;
     } else {
         address.nextElementSibling.innerHTML = "";
@@ -229,8 +229,6 @@ document.getElementById("order").addEventListener("click", function (event) {
             .then(function (data) {
                 localStorage.clear();
                 let orderId = data.orderId;
-                // localStorage.setItem("idCommande", JSON.stringify(orderId));
-                // document.location.href = `confirmation.html`;
                 window.location.assign(`confirmation.html?orderId=${orderId}`);
             });
     }

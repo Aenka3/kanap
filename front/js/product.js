@@ -29,7 +29,7 @@ let cartButton = document.getElementById("addToCart");
 
 //Ajouter le produit au panier
 cartButton.addEventListener("click", function (eventClick) { // 
-    if (document.getElementById("colors").value == "") {//On vérifie que l'utilisateur a choisit une coleur
+    if (document.getElementById("colors").value == "") {//On vérifie que l'utilisateur a choisit une couleur
         alert("Veuillez sélectionnez une couleur");
         eventClick.preventDefault();
     } else {
