@@ -51,7 +51,7 @@ function supprimerArticle(e) {
 function getNewQty(e) {
     let index = e.getAttribute("index");
     let newQty = e.value;
-    panier[index].qty = newQty;
+    panier[index].qty = parseInt(newQty);
 
     if (newQty == 0) {
         panier.splice(index, 1);
